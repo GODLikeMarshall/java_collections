@@ -1,0 +1,94 @@
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
+        // TODO: написать консольное приложение для работы со списком дел todoList
+        //todo: вот такая хрень получилась. не смог понять как срастить ее с имеющейся платформой.
+        //перед прочтением проговорить "иисус, мария и иосиф" -_-
+        ArrayList<String> todoList = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        String command = "";
+        int stopper = 0;
+        while (stopper == 0) {
+            command = scanner.nextLine();
+            String[] commands = command.split("\\s+");
+
+        Scanner scanner = new Scanner(System.in);
+
+
+        while (true) {
+            String command = scanner.nextLine();
+            String[] commands = command.split("\\s+");
+            boolean isIndex = false;
+            boolean inSize = false;
+            if(commands.length>1 && Pattern.matches("\\d+", commands[1])){
+                isIndex = true;
+              }
+            if(isIndex){
+            inSize = Integer.parseInt(commands[1]) < todoList.size();}
+            switch (commands[0]) {
+                case ("add"):
+                    if (command.length() < 5) {
+                    if (command.length()<5) {
+                        System.out.println("command is empty");
+                        break;
+                    }
+                    if (Pattern.matches("\\d+", commands[1]) && Integer.parseInt(commands[1]) < todoList.size() && command.length() > 5) {
+                    if (isIndex && inSize) {
+                        todoList.add(Integer.parseInt(commands[1]), command.substring(6));
+                        break;
+                    }
+                        System.out.println("todolist is empty");
+                        break;
+                    }
+                    if (commands.length > 1) {
+                        if (Pattern.matches("\\d+", commands[1]) && Integer.parseInt(commands[1]) < todoList.size()) {
+                            System.out.println(todoList.get(Integer.parseInt(commands[1])));
+                            break;
+                        }
+                    }
+
+                    for (int i = 0; i < todoList.size(); i++) {
+                        System.out.println(i + " - " + todoList.get(i));
+                    }
+                    break;
+                case ("edit"):
+                    if (commands.length > 2) {
+                        if (Pattern.matches("\\d+", commands[1]) && Integer.parseInt(commands[1]) < todoList.size()) {
+                            todoList.remove(Integer.parseInt(commands[1]));
+                        if (isIndex && inSize) {
+                            todoList.delete(Integer.parseInt(commands[1]));
+                            todoList.add(Integer.parseInt(commands[1]), command.substring(7));
+                            break;
+                        } else {
+                            System.out.println("have to target to edit");
+                            System.out.println("have no target to edit");
+                            break;
+                        }
+                    } else {
+                    }
+
+                case ("delete"):
+                    if(commands.length>1){
+                        if (todoList.size() > 0 && Pattern.matches("\\d+", commands[1])&& Integer.parseInt(commands[1]) < todoList.size()) {
+                            todoList.remove(Integer.parseInt(commands[1]));
+                        } else {
+                            System.out.println("nothing to delete");
+                        }} else {
+                    if (commands.length > 1) {
+                        if (todoList.size() > 0 && isIndex && inSize) {
+                            todoList.delete(Integer.parseInt(commands[1]));
+                        }
+                    } else {
+                        System.out.println("nothing to delete");
+                        break;
+
+                    }
+                    break;
+                case ("stop"):
+                    stopper++;
+                    break;
+                default:
+                    System.out.println("unknown command");
+
+            }
+        }
