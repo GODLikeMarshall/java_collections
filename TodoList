@@ -1,0 +1,54 @@
+package practice;
+
+import java.util.ArrayList;
+
+public class TodoList {
+ArrayList<String> todoList = new ArrayList<>();
+
+    public void add(String todo) {
+        // TODO: добавьте переданное дело в конец списка
+        todoList.add(todo);
+    }
+
+    public void add(int index, String todo) {
+        // TODO: добавьте дело на указаный индекс,
+        //  проверьте возможность добавления
+        todoList.trimToSize();
+        if(index<todoList.size()){
+        todoList.add(index,todo);}else{
+            add(todo);
+        }
+    }
+
+    public void edit(int index, String todo) {
+        // TODO: заменить дело на index переданным todo индекс,
+        //  проверьте возможность изменения
+        todoList.trimToSize();
+        if(index<todoList.size()){
+        todoList.remove(index);
+        todoList.add(index, todo);}
+    }
+
+    public void delete(int index) {
+        // TODO: удалить дело находящееся по переданному индексу,
+        //  проверьте возможность удаления дела
+        todoList.trimToSize();
+        if(index<todoList.size()){
+        todoList.remove(index);}
+    }
+    public int size(){
+        return todoList.size();
+    }
+    public String get(int index){
+        return todoList.get(index);
+    }
+    public boolean isEmpty(){
+        return todoList.isEmpty();
+    }
+
+    public ArrayList<String> getTodos() {
+        // TODO: вернуть список дел
+        return todoList;
+    }
+
+}
